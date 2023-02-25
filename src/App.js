@@ -1,8 +1,15 @@
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
+import ProductCart from "./Components/ProductCart/ProductCart";
+import ItemListContainer from "./Components/ItemListContainer/ItemListContainer";
 
 function App() {
   return (
     <div>
-      <h1>Hola mundo!</h1>
+      <Navbar />
+      <ItemListContainer greeting={"HOLA ¿COMO ESTAS?"} />
+      <ProductCart />
+      <Footer />
     </div>
   );
 }
