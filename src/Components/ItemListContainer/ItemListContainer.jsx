@@ -1,34 +1,59 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../../productsMock";
 import ItemList from "../ItemList/ItemList";
+import PropagateLoader from "react-spinners/PropagateLoader";
+import { db } from "../../firebase.Config";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
+const override = {
+  display: "block",
+  margin: "auto",
+  borderColor: "black",
+};
 
 const ItemListContainer = () => {
   const { categoryName } = useParams();
 
   const [items, setItems] = useState([]);
-
-  const productosFiltrados = products.filter(
-    (elemento) => elemento.category === categoryName
-  );
-
   useEffect(() => {
-    const productList = new Promise((resolve, reject) => {
-      resolve(categoryName ? productosFiltrados : products);
-    });
+    const itemsCollection = collection(db, "products");
 
-    productList
-      .then((res) => {
-        setItems(res);
-      })
-      .catch((error) => {
-        console.log(error);
+    let consulta = undefined;
+    if (categoryName) {
+      const q = query(itemsCollection, where("category", "==", categoryName));
+      consulta = getDocs(q);
+    } else {
+      consulta = getDocs(itemsCollection);
+    }
+
+    consulta.then((res) => {
+      let products = res.docs.map((product) => {
+        return {
+          ...product.data(),
+          id: product.id,
+        };
       });
+      setItems(products);
+    });
   }, [categoryName]);
+
+  //tecnica de rendering aplicada con spinner
 
   return (
     <div>
-      <ItemList items={items} />
+      {items.length > 0 ? (
+        <ItemList items={items} />
+      ) : (
+        <PropagateLoader
+          style={{ display: "flex", justifyContent: "center" }}
+          color={"black"}
+          //loading={loading}
+          cssOverride={override}
+          size={20}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      )}
     </div>
   );
 };

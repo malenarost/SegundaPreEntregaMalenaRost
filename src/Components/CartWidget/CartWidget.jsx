@@ -1,20 +1,25 @@
-import { BsFillCartCheckFill } from "react-icons/bs";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import "./CartWidget.css";
-
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
-const CartWidget = ({ numero }) => {
+const CartWidget = () => {
+  const { getTotalQuantity } = useContext(CartContext);
+
+  const total = getTotalQuantity();
+
   return (
     <Link to="/cart">
       <div className="container-cart">
-        <BsFillCartCheckFill
+        <ShoppingCartCheckoutIcon
           style={{
-            fontSize: "2rem",
-            color: "#e1d4c7",
+            fontSize: "3rem",
+            color: "white",
           }}
         />
         <div className="bubble-counter">
-          <span>0</span>
+          <span>{total}</span>
         </div>
       </div>
     </Link>

@@ -4,12 +4,13 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  color: #e1d4c7;
+  color: white;
 }
 .bubble-counter {
+  color: white;
   width: 30px;
   height: 30px;
-  border: 2px solid #e1d4c7;
+  border: 2px solid white;
   border-radius: 50%;
   position: absolute;
   top: -50%;

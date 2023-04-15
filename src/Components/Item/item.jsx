@@ -12,10 +12,10 @@ const Item = ({ element }) => {
   return (
     <Card
       sx={{
-        width: 345,
-        height: 350,
-        backgroundColor: "black",
-        color: "white",
+        width: 350,
+        height: 355,
+        backgroundColor: "aliceblue",
+        color: "black",
         border: "1px solid black",
         borderRadius: "10px",
         boxShadow: "0px 0px 10px black",

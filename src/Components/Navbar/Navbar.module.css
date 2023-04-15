@@ -1,6 +1,6 @@
 .containerNavbar {
   width: 100%;
-  height: 15vh;
+  height: 30vh;
   background-color: steelblue;
   display: flex;
   align-items: center;
@@ -18,9 +18,16 @@
   list-style: none;
   cursor: pointer;
   font-size: 1.2rem;
+  text-decoration: none;
   /* box-shadow: 2px 2px 2px 2px grey; */
   padding: 7px 10px;
   border-radius: 10px;
-  background-color: #e1d4c7;
+  background-color: black;
   text-align: center;
+  color: white;
+}
+.brandLogo {
+  margin: 2rem;
+  font-size: 10rem;
+  color: white;
 }

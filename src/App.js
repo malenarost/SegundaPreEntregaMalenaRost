@@ -4,27 +4,29 @@ import ItemDetailContainer from "./Components/ItemDetailContainer/ItemDetailCont
 import ItemListContainer from "./Components/ItemListContainer/ItemListContainer";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import ProductsBack from "./Components/ProductsBack/ProductsBack";
+import FormCheckout from "./Components/FormCheckout/FormCheckout";
+import CartContextProvider from "./context/CartContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <CartContextProvider>
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<ItemListContainer />} />
+        <Routes>
+          <Route path="/" element={<ItemListContainer />} />
 
-        <Route path="/category/:categoryName" element={<ItemListContainer />} />
-
-        <Route path="/cart" element={<Cart />} />
-
-        <Route path="/itemDetail/:id" element={<ItemDetailContainer />} />
-
-        <Route path="*" element={<h1> error 404: Not found </h1>} />
-
-        <Route path="/productsback" element={<ProductsBack />} />
-      </Routes>
-      <Footer />
+          <Route
+            path="/category/:categoryName"
+            element={<ItemListContainer />}
+          />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/itemDetail/:id" element={<ItemDetailContainer />} />
+          <Route path="/formulario" element={<FormCheckout />} />
+          <Route path="*" element={<h1> error 404: Not found </h1>} />
+        </Routes>
+        <Footer />
+      </CartContextProvider>
     </BrowserRouter>
   );
 }
